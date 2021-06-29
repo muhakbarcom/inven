@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2021 at 11:00 AM
+-- Generation Time: Jun 29, 2021 at 01:42 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -82,8 +82,6 @@ INSERT INTO `groups_menu` (`id_groups`, `id_menu`) VALUES
 (1, 93),
 (1, 94),
 (1, 43),
-(1, 44),
-(1, 115),
 (1, 42),
 (1, 1),
 (2, 1),
@@ -139,59 +137,6 @@ INSERT INTO `groups_menu` (`id_groups`, `id_menu`) VALUES
 (27, 3),
 (28, 3),
 (29, 3),
-(1, 118),
-(5, 118),
-(6, 118),
-(7, 118),
-(8, 118),
-(9, 118),
-(10, 118),
-(11, 118),
-(12, 118),
-(13, 118),
-(14, 118),
-(15, 118),
-(16, 118),
-(17, 118),
-(18, 118),
-(19, 118),
-(20, 118),
-(21, 118),
-(22, 118),
-(23, 118),
-(24, 118),
-(25, 118),
-(26, 118),
-(27, 118),
-(28, 118),
-(29, 118),
-(1, 117),
-(2, 117),
-(5, 117),
-(6, 117),
-(7, 117),
-(8, 117),
-(9, 117),
-(10, 117),
-(11, 117),
-(12, 117),
-(13, 117),
-(14, 117),
-(15, 117),
-(16, 117),
-(17, 117),
-(18, 117),
-(19, 117),
-(20, 117),
-(21, 117),
-(22, 117),
-(23, 117),
-(24, 117),
-(25, 117),
-(26, 117),
-(27, 117),
-(28, 117),
-(29, 117),
 (1, 125),
 (2, 125),
 (7, 125),
@@ -205,10 +150,14 @@ INSERT INTO `groups_menu` (`id_groups`, `id_menu`) VALUES
 (1, 127),
 (2, 127),
 (1, 114),
-(1, 115),
-(1, 116),
-(1, 117),
-(1, 118);
+(32, 122),
+(2, 120),
+(32, 120),
+(2, 121),
+(32, 121),
+(2, 119),
+(32, 119),
+(1, 44);
 
 -- --------------------------------------------------------
 
@@ -261,20 +210,20 @@ CREATE TABLE `menu` (
 INSERT INTO `menu` (`id_menu`, `sort`, `level`, `parent_id`, `icon`, `label`, `link`, `id`, `id_menu_type`) VALUES
 (1, 0, 1, 0, 'empty', 'MAIN NAVIGATION', '#', '#', 1),
 (3, 1, 2, 1, 'fas fa-tachometer-alt', 'Dashboard', 'dashboard', '#', 1),
-(4, 9, 2, 40, 'fas fa-table', 'CRUD Generator', 'crudbuilder', '1', 1),
-(8, 7, 2, 40, 'fas fa-bars', 'Menu', 'cms/menu/side-menu', 'navMenu', 1),
-(40, 4, 1, 0, 'empty', 'DEV', '#', '#', 1),
-(42, 10, 2, 40, 'fas fa-users-cog', 'User', '#', '1', 1),
-(43, 11, 3, 42, 'fas fa-angle-double-right', 'Users', 'users', '1', 1),
-(44, 12, 3, 42, 'fas fa-angle-double-right', 'Groups', 'groups', '2', 1),
-(89, 8, 2, 40, 'fas fa-th-list', 'Menu Type', 'menu_type', 'menu_type', 1),
-(92, 2, 1, 0, 'empty', 'MASTER DATA', '#', 'masterdata', 1),
-(107, 5, 2, 40, 'fas fa-cog', 'Setting', 'setting', 'setting', 1),
-(114, 1, 2, 92, 'far fa-calendar-alt', 'Jadwal', 'jadwal', '1', 1),
-(115, 1, 2, 92, 'fab fa-affiliatetheme', 'Penumpang', 'penumpang', '1', 1),
-(116, 1, 2, 92, 'fab fa-amazon-pay', 'Pemesanan', 'pemesanan', '1', 1),
-(117, 1, 2, 92, 'fas fa-air-freshener', 'Detail Pemesanan', 'detail_pemesanan', '1', 1),
-(118, 1, 2, 92, 'fab fa-app-store', 'Pembayaran', 'pembayaran', '1', 1);
+(4, 15, 2, 40, 'fas fa-table', 'CRUD Generator', 'crudbuilder', '1', 1),
+(8, 13, 2, 40, 'fas fa-bars', 'Menu', 'cms/menu/side-menu', 'navMenu', 1),
+(40, 11, 1, 0, 'empty', 'DEV', '#', '#', 1),
+(42, 8, 2, 92, 'fas fa-users-cog', 'User', '#', '1', 1),
+(43, 9, 3, 42, 'fas fa-angle-double-right', 'Users', 'users', '1', 1),
+(44, 10, 3, 42, 'fas fa-angle-double-right', 'Hak Akses', 'groups', '2', 1),
+(89, 14, 2, 40, 'fas fa-th-list', 'Menu Type', 'menu_type', 'menu_type', 1),
+(92, 6, 1, 0, 'empty', 'MASTER DATA', '#', 'masterdata', 1),
+(107, 12, 2, 40, 'fas fa-cog', 'Setting', 'setting', 'setting', 1),
+(114, 7, 2, 92, 'far fa-calendar-alt', 'Jadwal Keberangkatan', 'jadwal', '1', 1),
+(119, 2, 2, 1, 'fas fa-ship', 'Pemesanan', '#', '1', 1),
+(120, 3, 3, 119, 'fas fa-ticket-alt', 'Pesan Tiket', '#', '1', 1),
+(121, 4, 3, 119, 'fas fa-history', 'History Pemesanan', '#', '1', 1),
+(122, 5, 2, 1, 'far fa-file', 'Laporan', '#', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -387,9 +336,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `image`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@muhakbar.com', '', 'm0vyKu2zW7L8PTG20bquF.707e055aeea8a30aca', 1541329145, 'WcHCQ5vcXwT1z99BvJUWnu', 1268889823, 1624956782, 1, 'Akbar', 'Admin', 'ADMIN', '0', 'akbr_pp_2.jpg'),
-(2, '127.0.0.1', 'member', '$2y$08$ipVAkJ.rjy35wARE9Px47eS2k.gz2FPYy14M019VFwLtBcUax2YJS', '', 'member@member.com', '', 'm0vyKu2zW7L8PTG20bquF.707e055aeea8a30aca', 1541329145, 'lHtbqmxsnla1izZ5LcXd9O', 1268889823, 1622291092, 1, 'Member', 'Apps', 'ADMIN', '0', 'default.jpg'),
-(12, '::1', 'a@a.com', '$2y$08$T1j1YJGXbdGI9XMS9CUyoeGvl2EdSWv7QYbarRtR7eTHR936ZBINq', NULL, 'a@a.com', NULL, NULL, NULL, NULL, 1623835278, NULL, 1, 'asdasd', 'asdasdasd', 'asdasdasdas', '089646464664', 'default.jpg');
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@muhakbar.com', '', 'm0vyKu2zW7L8PTG20bquF.707e055aeea8a30aca', 1541329145, 'WcHCQ5vcXwT1z99BvJUWnu', 1268889823, 1624966587, 1, 'Akbar', 'Admin', 'ADMIN', '0', 'akbr_pp_2.jpg'),
+(13, '::1', 'penumpang01@gmail.com', '$2y$08$GFbtgOEJDsBjS3BXQq2cg.npg9mumOeqKEMWVAfKfdjH5L9lXmWiS', NULL, 'penumpang01@gmail.com', NULL, NULL, NULL, NULL, 1624966650, NULL, 1, 'Penumpang', '01', 'Asal', '089999999', 'default.jpg'),
+(14, '::1', 'admin01@gmail.com', '$2y$08$Mmx4Lc4eSqoJCo5x9XvL3OnXtuUtUfzrfsLhv9EqNfOItj1T71vnC', NULL, 'admin01@gmail.com', NULL, NULL, NULL, NULL, 1624966675, NULL, 1, 'admin', '01', 'asal', '08999999999', 'default.jpg'),
+(15, '::1', 'kasir01@gmail.com', '$2y$08$0oAIatoQAr1hOycODs.04uMCXx4kiFevoHJFuUWFTDE8F1ZMF37tG', NULL, 'kasir01@gmail.com', NULL, NULL, NULL, NULL, 1624966704, NULL, 1, 'Kasir', '01', 'asal', '089999999', 'default.jpg'),
+(16, '::1', 'pemilik01@gmail.com', '$2y$08$hoTaK2Gtln6lQk8MDpjfOOFBotvB3bMc2prWhxchP/2dduEnlLyfS', NULL, 'pemilik01@gmail.com', NULL, NULL, NULL, NULL, 1624966749, NULL, 1, 'Pemilik', '01', 'asal', '089999999', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -409,7 +360,6 @@ CREATE TABLE `users_groups` (
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (24, 1, 1),
-(25, 2, 2),
 (11, 3, 2),
 (10, 4, 2),
 (13, 5, 8),
@@ -417,12 +367,11 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (19, 7, 6),
 (21, 8, 7),
 (1, 9, 17),
-(90, 12, 2),
-(67, 12, 8),
+(91, 13, 2),
 (64, 13, 18),
-(66, 14, 30),
-(68, 15, 17),
-(70, 16, 17),
+(95, 14, 1),
+(96, 15, 32),
+(97, 16, 33),
 (75, 17, 17),
 (76, 18, 17),
 (77, 19, 17),
@@ -559,7 +508,7 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `menu_type`
@@ -595,13 +544,13 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
