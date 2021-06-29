@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2021 at 02:26 PM
+-- Generation Time: Jun 29, 2021 at 11:00 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -18,52 +18,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `akbr_for_u`
+-- Database: `tiket_kapal`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `akbr_contoh`
+-- Table structure for table `detail_pemesanan`
 --
 
-CREATE TABLE `akbr_contoh` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(128) NOT NULL,
-  `alamat` varchar(128) NOT NULL,
-  `email` varchar(128) NOT NULL
+CREATE TABLE `detail_pemesanan` (
+  `id_detail_pemesanan` int(11) NOT NULL,
+  `id_jadwal` int(11) NOT NULL,
+  `id_oemesanan` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `nomor_hp` int(11) NOT NULL,
+  `jenis_kelamin` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `akbr_contoh`
---
-
-INSERT INTO `akbr_contoh` (`id`, `nama`, `alamat`, `email`) VALUES
-(1, 'Muhammad Akbar', 'Sarijadi, Bandung', 'muhammad.akbar5999@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `frontend_menu`
---
-
-CREATE TABLE `frontend_menu` (
-  `id_menu` int(11) NOT NULL,
-  `label` varchar(100) NOT NULL,
-  `link` varchar(100) NOT NULL,
-  `id` varchar(100) NOT NULL,
-  `sort` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `frontend_menu`
---
-
-INSERT INTO `frontend_menu` (`id_menu`, `label`, `link`, `id`, `sort`) VALUES
-(1, 'Home', 'frontend/index', 'Home', 0),
-(2, 'Features', 'frontend/features', 'Features', 1),
-(3, 'About', 'frontend/about', 'about', 2),
-(4, 'Sign in', 'login', 'signin', 3);
 
 -- --------------------------------------------------------
 
@@ -83,7 +54,9 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', 'Administrator'),
-(2, 'members', 'General User');
+(2, 'Penumpang', 'Penumpang Kapal'),
+(32, 'Kasir', 'Ticketing'),
+(33, 'Pemilik', 'Pemilik Perusahaan');
 
 -- --------------------------------------------------------
 
@@ -231,30 +204,24 @@ INSERT INTO `groups_menu` (`id_groups`, `id_menu`) VALUES
 (29, 125),
 (1, 127),
 (2, 127),
-(2, 113);
+(1, 114),
+(1, 115),
+(1, 116),
+(1, 117),
+(1, 118);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `list_session_token`
+-- Table structure for table `jadwal`
 --
 
-CREATE TABLE `list_session_token` (
-  `session_id` int(11) NOT NULL,
-  `session_token` varchar(100) NOT NULL,
-  `admin_id` int(11) NOT NULL,
-  `active_time` datetime NOT NULL,
-  `expire_time` datetime NOT NULL,
-  `is_login` tinyint(4) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `list_session_token`
---
-
-INSERT INTO `list_session_token` (`session_id`, `session_token`, `admin_id`, `active_time`, `expire_time`, `is_login`) VALUES
-(12, 'mFu6GqJ9laWV3G9pwgch9pETdg', 1, '2021-01-07 12:35:04', '2021-01-07 12:50:04', 0),
-(13, 'S7oAgkk63Xm8n2MGzXIdnJsXho', 1, '2021-01-07 12:41:35', '2021-01-07 12:56:35', 1);
+CREATE TABLE `jadwal` (
+  `id_jadwal` int(11) NOT NULL,
+  `tanggal_keberangkatan` date NOT NULL,
+  `tanggal_sampai` date NOT NULL,
+  `harga_tiket` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -268,53 +235,6 @@ CREATE TABLE `login_attempts` (
   `login` varchar(100) NOT NULL,
   `time` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `login_attempts`
---
-
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-(10, '::1', 'admin@admin.com', 1622265617);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mahasiswa`
---
-
-CREATE TABLE `mahasiswa` (
-  `id` int(11) NOT NULL,
-  `npm` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `tgl_lahir` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `mahasiswa`
---
-
-INSERT INTO `mahasiswa` (`id`, `npm`, `nama`, `tgl_lahir`) VALUES
-(1, 2193001, 'Alvi Yatul Wardah', '2000-12-09'),
-(2, 2193002, 'Aryaputra Wicaksono', '2001-05-30'),
-(3, 2193003, 'Charles Marpaung', '2000-10-19'),
-(4, 2193004, 'Ester Cibro', '2001-04-07'),
-(5, 2193005, 'Fajar Somantri', '2000-08-10'),
-(6, 2193006, 'Genta Tabah Pengabdian', '2001-04-20'),
-(7, 2193007, 'Gerald Rajagukguk', '2001-06-03'),
-(8, 2193008, 'Grenius Natanael Sidabutar', '2001-12-31'),
-(9, 2193009, 'Ilfah Rifany', '2001-06-02'),
-(10, 2193010, 'Khaliza Diva Qintanada', '2001-09-07'),
-(11, 2193011, 'Koestiyandi Prayoga', '2001-05-17'),
-(12, 2193012, 'Mita Hasanah', '2000-07-19'),
-(13, 2193013, 'Muhammad Akbar', '1999-09-05'),
-(14, 2193014, 'Nazzilla Auliya Putri', '2000-08-11'),
-(15, 2193015, 'Popy Geovani', '2001-04-30'),
-(16, 2193016, 'Prita Fitria Waluyo', '2001-01-09'),
-(17, 2193017, 'Savia Almira Salsabilla', '2001-02-14'),
-(18, 2193018, 'Tegar Nova Silviana', '2001-11-08'),
-(19, 2193019, 'Thifal Irbah Anan', '2000-07-04'),
-(20, 2193020, 'Vinda Ayu Lestari', '2001-01-20'),
-(21, 2193021, 'Zsa Zsa Sabilla', '2001-05-06');
 
 -- --------------------------------------------------------
 
@@ -350,9 +270,11 @@ INSERT INTO `menu` (`id_menu`, `sort`, `level`, `parent_id`, `icon`, `label`, `l
 (89, 8, 2, 40, 'fas fa-th-list', 'Menu Type', 'menu_type', 'menu_type', 1),
 (92, 2, 1, 0, 'empty', 'MASTER DATA', '#', 'masterdata', 1),
 (107, 5, 2, 40, 'fas fa-cog', 'Setting', 'setting', 'setting', 1),
-(108, 3, 2, 92, 'fab fa-affiliatetheme', 'Mahasiswa', 'mahasiswa', 'mahasiswa', 1),
-(109, 6, 2, 40, 'fas fa-align-justify', 'Frontend Menu', 'frontend_menu', 'Frontend Menu', 1),
-(113, 1, 2, 92, 'fab fa-accusoft', 'Member', '12sad', '1', 1);
+(114, 1, 2, 92, 'far fa-calendar-alt', 'Jadwal', 'jadwal', '1', 1),
+(115, 1, 2, 92, 'fab fa-affiliatetheme', 'Penumpang', 'penumpang', '1', 1),
+(116, 1, 2, 92, 'fab fa-amazon-pay', 'Pemesanan', 'pemesanan', '1', 1),
+(117, 1, 2, 92, 'fas fa-air-freshener', 'Detail Pemesanan', 'detail_pemesanan', '1', 1),
+(118, 1, 2, 92, 'fab fa-app-store', 'Pembayaran', 'pembayaran', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -375,6 +297,47 @@ INSERT INTO `menu_type` (`id_menu_type`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pembayaran`
+--
+
+CREATE TABLE `pembayaran` (
+  `id_pembayaran` int(11) NOT NULL,
+  `id_pemesanan` int(11) NOT NULL,
+  `metode` varchar(50) NOT NULL,
+  `tanggal_bayar` date NOT NULL,
+  `status_bayar` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pemesanan`
+--
+
+CREATE TABLE `pemesanan` (
+  `id_pemesanan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `status_pemesanan` varchar(50) NOT NULL,
+  `tanggal_pemesanan` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penumpang`
+--
+
+CREATE TABLE `penumpang` (
+  `id_penumpang` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `jens_kelamin` varchar(50) NOT NULL,
+  `nomor_hp` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `setting`
 --
 
@@ -390,7 +353,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id`, `kode`, `nama`, `nilai`) VALUES
-(1, 'default.jpg', 'D3 MI 19', 'www.muhakbar.com');
+(1, 'logo_tiket_kapal.jpg', 'Tiket Kapal', 'Danau Toba');
 
 -- --------------------------------------------------------
 
@@ -424,8 +387,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `image`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@muhakbar.com', '', 'm0vyKu2zW7L8PTG20bquF.707e055aeea8a30aca', 1541329145, 'WcHCQ5vcXwT1z99BvJUWnu', 1268889823, 1622290859, 1, 'Akbar', 'Admin', 'ADMIN', '0', 'akbr_pp_2.jpg'),
-(2, '127.0.0.1', 'member', '$2y$08$ipVAkJ.rjy35wARE9Px47eS2k.gz2FPYy14M019VFwLtBcUax2YJS', '', 'member@member.com', '', 'm0vyKu2zW7L8PTG20bquF.707e055aeea8a30aca', 1541329145, 'lHtbqmxsnla1izZ5LcXd9O', 1268889823, 1622291092, 1, 'Member', 'Apps', 'ADMIN', '0', 'default.jpg');
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@muhakbar.com', '', 'm0vyKu2zW7L8PTG20bquF.707e055aeea8a30aca', 1541329145, 'WcHCQ5vcXwT1z99BvJUWnu', 1268889823, 1624956782, 1, 'Akbar', 'Admin', 'ADMIN', '0', 'akbr_pp_2.jpg'),
+(2, '127.0.0.1', 'member', '$2y$08$ipVAkJ.rjy35wARE9Px47eS2k.gz2FPYy14M019VFwLtBcUax2YJS', '', 'member@member.com', '', 'm0vyKu2zW7L8PTG20bquF.707e055aeea8a30aca', 1541329145, 'lHtbqmxsnla1izZ5LcXd9O', 1268889823, 1622291092, 1, 'Member', 'Apps', 'ADMIN', '0', 'default.jpg'),
+(12, '::1', 'a@a.com', '$2y$08$T1j1YJGXbdGI9XMS9CUyoeGvl2EdSWv7QYbarRtR7eTHR936ZBINq', NULL, 'a@a.com', NULL, NULL, NULL, NULL, 1623835278, NULL, 1, 'asdasd', 'asdasdasd', 'asdasdasdas', '089646464664', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -453,6 +417,7 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (19, 7, 6),
 (21, 8, 7),
 (1, 9, 17),
+(90, 12, 2),
 (67, 12, 8),
 (64, 13, 18),
 (66, 14, 30),
@@ -488,16 +453,10 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 --
 
 --
--- Indexes for table `akbr_contoh`
+-- Indexes for table `detail_pemesanan`
 --
-ALTER TABLE `akbr_contoh`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `frontend_menu`
---
-ALTER TABLE `frontend_menu`
-  ADD PRIMARY KEY (`id_menu`);
+ALTER TABLE `detail_pemesanan`
+  ADD PRIMARY KEY (`id_detail_pemesanan`);
 
 --
 -- Indexes for table `groups`
@@ -506,24 +465,16 @@ ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `list_session_token`
+-- Indexes for table `jadwal`
 --
-ALTER TABLE `list_session_token`
-  ADD PRIMARY KEY (`session_id`),
-  ADD KEY `FK__list_admin` (`admin_id`);
+ALTER TABLE `jadwal`
+  ADD PRIMARY KEY (`id_jadwal`);
 
 --
 -- Indexes for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `mahasiswa`
---
-ALTER TABLE `mahasiswa`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `npm` (`npm`) USING BTREE;
 
 --
 -- Indexes for table `menu`
@@ -536,6 +487,24 @@ ALTER TABLE `menu`
 --
 ALTER TABLE `menu_type`
   ADD PRIMARY KEY (`id_menu_type`);
+
+--
+-- Indexes for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD PRIMARY KEY (`id_pembayaran`);
+
+--
+-- Indexes for table `pemesanan`
+--
+ALTER TABLE `pemesanan`
+  ADD PRIMARY KEY (`id_pemesanan`);
+
+--
+-- Indexes for table `penumpang`
+--
+ALTER TABLE `penumpang`
+  ADD PRIMARY KEY (`id_penumpang`);
 
 --
 -- Indexes for table `setting`
@@ -563,52 +532,58 @@ ALTER TABLE `users_groups`
 --
 
 --
--- AUTO_INCREMENT for table `akbr_contoh`
+-- AUTO_INCREMENT for table `detail_pemesanan`
 --
-ALTER TABLE `akbr_contoh`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `frontend_menu`
---
-ALTER TABLE `frontend_menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `detail_pemesanan`
+  MODIFY `id_detail_pemesanan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `list_session_token`
+-- AUTO_INCREMENT for table `jadwal`
 --
-ALTER TABLE `list_session_token`
-  MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+ALTER TABLE `jadwal`
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `mahasiswa`
---
-ALTER TABLE `mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT for table `menu_type`
 --
 ALTER TABLE `menu_type`
   MODIFY `id_menu_type` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pemesanan`
+--
+ALTER TABLE `pemesanan`
+  MODIFY `id_pemesanan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `penumpang`
+--
+ALTER TABLE `penumpang`
+  MODIFY `id_penumpang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -620,13 +595,13 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
